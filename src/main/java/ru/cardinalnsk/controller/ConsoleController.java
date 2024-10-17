@@ -43,10 +43,12 @@ public class ConsoleController implements Runnable {
                     case Character -> {
                         char keyChar = Character.toLowerCase(keyStroke.getCharacter());
                         setDirection(switch (keyChar) {
-                            case 'w' -> direction == Direction.DOWN ? Direction.DOWN : Direction.UP;
+                            case 'w' ->
+                                direction == Direction.DOWN ? Direction.DOWN : Direction.UP;
                             case 'a' ->
                                 direction == Direction.RIGHT ? Direction.RIGHT : Direction.LEFT;
-                            case 's' -> direction == Direction.UP ? Direction.UP : Direction.DOWN;
+                            case 's' ->
+                                direction == Direction.UP ? Direction.UP : Direction.DOWN;
                             case 'd' ->
                                 direction == Direction.LEFT ? Direction.LEFT : Direction.RIGHT;
                             default -> direction;
