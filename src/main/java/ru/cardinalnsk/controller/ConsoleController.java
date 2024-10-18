@@ -33,8 +33,8 @@ public class ConsoleController implements Runnable {
             if (keyStroke != null) {
                 KeyType keyType = keyStroke.getKeyType();
                 switch (keyType) {
-                    case ArrowUp -> setSelectedMenuItem((selectedMenuItem - 1 + maxMenuItems) % maxMenuItems);
-                    case ArrowDown -> setSelectedMenuItem((selectedMenuItem + 1) % maxMenuItems);
+                    case ArrowUp -> selectedMenuItem((selectedMenuItem - 1 + maxMenuItems) % maxMenuItems);
+                    case ArrowDown -> selectedMenuItem((selectedMenuItem + 1) % maxMenuItems);
                     case Enter -> enterPressed = true;
                     case Escape -> {
                         isAlive = false;
@@ -42,7 +42,7 @@ public class ConsoleController implements Runnable {
                     }
                     case Character -> {
                         char keyChar = Character.toLowerCase(keyStroke.getCharacter());
-                        setDirection(switch (keyChar) {
+                        direction(switch (keyChar) {
                             case 'w' ->
                                 direction == Direction.DOWN ? Direction.DOWN : Direction.UP;
                             case 'a' ->
