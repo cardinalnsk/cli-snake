@@ -24,7 +24,7 @@ class ConsoleControllerTest {
     public void setUp() {
         terminal = Mockito.mock(Terminal.class);
         consoleController = new ConsoleController(terminal);
-        consoleController.setMaxMenuItems(3);
+        consoleController.maxMenuItems(3);
     }
 
     @Test
@@ -32,11 +32,11 @@ class ConsoleControllerTest {
         KeyStroke keyStroke = new KeyStroke(KeyType.ArrowUp);
         when(terminal.readInput()).thenReturn(keyStroke);
 
-        consoleController.setSelectedMenuItem(1);
+        consoleController.selectedMenuItem(1);
 
         consoleController.keyListener();
 
-        assertEquals(0, consoleController.getSelectedMenuItem());
+        assertEquals(0, consoleController.selectedMenuItem());
     }
 
     @Test
@@ -44,22 +44,22 @@ class ConsoleControllerTest {
         KeyStroke keyStroke = new KeyStroke(KeyType.ArrowDown);
         when(terminal.readInput()).thenReturn(keyStroke);
 
-        consoleController.setSelectedMenuItem(3);
+        consoleController.selectedMenuItem(3);
 
         consoleController.keyListener();
 
-        assertEquals(1, consoleController.getSelectedMenuItem());
+        assertEquals(1, consoleController.selectedMenuItem());
     }
 
     @Test
     void testCharacterWChangesDirectionToUp() throws IOException {
         KeyStroke keyStroke = new KeyStroke('w', false, false);
         when(terminal.readInput()).thenReturn(keyStroke);
-        consoleController.setDirection(Direction.RIGHT);
+        consoleController.direction(Direction.RIGHT);
 
         consoleController.keyListener();
 
-        assertEquals(Direction.UP, consoleController.getDirection());
+        assertEquals(Direction.UP, consoleController.direction());
     }
 
     @Test
@@ -68,7 +68,7 @@ class ConsoleControllerTest {
 
         when(terminal.readInput()).thenReturn(keyStroke);
 
-        consoleController.setAlive(true);
+        consoleController.isAlive(true);
 
         int exitCode = catchSystemExit(() ->
             consoleController.keyListener()
@@ -82,10 +82,10 @@ class ConsoleControllerTest {
         KeyStroke keyStroke = new KeyStroke(KeyType.Enter);
         when(terminal.readInput()).thenReturn(keyStroke);
 
-        assertFalse(consoleController.isEnterPressed());
+        assertFalse(consoleController.enterPressed());
 
         consoleController.keyListener();
 
-        assertTrue(consoleController.isEnterPressed());
+        assertTrue(consoleController.enterPressed());
     }
 }
