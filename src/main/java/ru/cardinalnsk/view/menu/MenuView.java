@@ -5,5 +5,5 @@ public interface MenuView {
     String EMPTY_MENU_POINT = "  ";
 
     void draw();
-    void drawMenuItem(int index);
+    void drawSelectedMenuItem(int index);
 }
