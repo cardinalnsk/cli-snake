@@ -38,7 +38,7 @@ public class ConsoleMenuView extends AbstractView<Menu> implements MenuView {
     }
 
     @Override
-    public void drawMenuItem(int index) {
+    public void drawSelectedMenuItem(int index) {
         for (int i = 0; i < menu.menuItems().size(); i++) {
             printer.moveToPosition(menuItemX, menuItemY + i);
             if (i == index) {

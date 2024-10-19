@@ -62,9 +62,9 @@ class ConsoleMenuViewTest {
     }
 
     @Test
-    void testDrawMenuItem() {
+    void testDrawSelectedMenuItem() {
         int selectedIndex = 1;
-        view.drawMenuItem(selectedIndex);
+        view.drawSelectedMenuItem(selectedIndex);
         for (int i = 0; i < menu.menuItems().size(); i++) {
             verify(printer).moveToPosition(menuItemX, menuItemY + i);
         }
