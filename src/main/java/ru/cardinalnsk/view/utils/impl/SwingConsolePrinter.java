@@ -1,5 +1,7 @@
 package ru.cardinalnsk.view.utils.impl;
 
+import com.googlecode.lanterna.TextColor;
+import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.terminal.Terminal;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -22,6 +24,18 @@ public class SwingConsolePrinter implements Printer {
 
     @SneakyThrows
     @Override
+    public TextGraphics getTextGraphics() {
+        return terminal.newTextGraphics();
+    }
+
+    @SneakyThrows
+    @Override
+    public void refresh() {
+        terminal.flush();
+    }
+
+    @SneakyThrows
+    @Override
     public void moveToPosition(int x, int y) {
         terminal.setCursorPosition(x, y);
         terminal.flush();
@@ -34,6 +48,13 @@ public class SwingConsolePrinter implements Printer {
         terminal.clearScreen();
         terminal.flush();
 
+    }
+
+    @SneakyThrows
+    @Override
+    public void setColor(TextColor color) {
+        terminal.setForegroundColor(color);
+        terminal.flush();
     }
 
     @SneakyThrows

@@ -12,6 +12,7 @@ public abstract class AbstractView<T> {
     protected static int WIDTH;
 
     protected final Printer printer;
+
     @Getter
     private final T model;
 
