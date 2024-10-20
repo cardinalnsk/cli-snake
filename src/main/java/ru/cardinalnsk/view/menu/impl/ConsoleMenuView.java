@@ -1,5 +1,9 @@
 package ru.cardinalnsk.view.menu.impl;
 
+import com.googlecode.lanterna.TextColor.ANSI;
+import com.googlecode.lanterna.graphics.TextGraphics;
+import java.util.Random;
+import lombok.SneakyThrows;
 import ru.cardinalnsk.model.Menu;
 import ru.cardinalnsk.view.AbstractView;
 import ru.cardinalnsk.view.menu.MenuView;
@@ -17,7 +21,7 @@ public class ConsoleMenuView extends AbstractView<Menu> implements MenuView {
         super(printer, menu);
         this.menu = menu;
         int headerLength = menu.header().length();
-        this.headerX = (printer.width() / 2) - headerLength / 2;
+        this.headerX = printer.width() / 2 - headerLength / 2;
         this.headerY = printer.height() / 2 - menu.menuItems().size();
         this.menuItemX = headerX + 2;
         this.menuItemY = headerY + 2;
@@ -40,12 +44,20 @@ public class ConsoleMenuView extends AbstractView<Menu> implements MenuView {
     @Override
     public void drawSelectedMenuItem(int index) {
         for (int i = 0; i < menu.menuItems().size(); i++) {
+            printer.setColor(ANSI.GREEN_BRIGHT);
             printer.moveToPosition(menuItemX, menuItemY + i);
             if (i == index) {
-                printer.print(ACTUAL_MENU_POINT);
+                printer.print(ARROW_RIGHT);
+                printer.moveToPosition(menuItemX + menu.menuItems().get(i).length() + 2,
+                    menuItemY + i);
+                printer.print(ARROW_LEFT);
             } else {
+                printer.print(EMPTY_MENU_POINT);
+                printer.moveToPosition(menuItemX + menu.menuItems().get(i).length() + 2,
+                    menuItemY + i);
                 printer.print(EMPTY_MENU_POINT);
             }
         }
+        printer.setColor(ANSI.DEFAULT);
     }
 }
